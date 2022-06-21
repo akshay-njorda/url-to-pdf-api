@@ -10,7 +10,7 @@ const config = {
   DISABLE_HTML_INPUT: process.env.DISABLE_HTML_INPUT === 'true',
   CORS_ORIGIN: process.env.CORS_ORIGIN || '*',
   BROWSER_WS_ENDPOINT: process.env.BROWSER_WS_ENDPOINT,
-  BROWSER_EXECUTABLE_PATH: process.env.BROWSER_EXECUTABLE_PATH,
+  BROWSER_EXECUTABLE_PATH: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
   API_TOKENS: [],
   ALLOW_URLS: [],
 };

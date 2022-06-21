@@ -16,7 +16,7 @@ async function createBrowser(opts) {
   if (config.BROWSER_EXECUTABLE_PATH) {
     browserOpts.executablePath = config.BROWSER_EXECUTABLE_PATH;
   }
-  browserOpts.headless = !config.DEBUG_MODE;
+  browserOpts.headless = true;
   browserOpts.args = ['--no-sandbox', '--disable-setuid-sandbox'];
   if (!opts.enableGPU || navigator.userAgent.indexOf('Win') !== -1) {
     browserOpts.args.push('--disable-gpu');
@@ -125,7 +125,11 @@ async function render(_opts = {}) {
       await page.setContent(opts.html, opts.goto);
     } else {
       logger.info(`Goto url ${opts.url} ..`);
-      await page.goto(opts.url, opts.goto);
+      await page.goto(opts.url, opts, {
+        waitUntil: 'load',
+        // Remove the timeout
+        timeout: 0
+    });
     }
 
     if (_.isNumber(opts.waitFor) || _.isString(opts.waitFor)) {
